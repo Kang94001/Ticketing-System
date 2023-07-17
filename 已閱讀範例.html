@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+
+$(function(){
+    $("a").on("click", function(event){
+        if (! $("#check").prop("checked")) {
+            event.preventDefault()
+            alert("請按已閱讀")
+        }
+    })
+})
+
+</script>
+<style>
+
+</style>
+<body>
+<label><input id="check" type="checkbox">我已詳細閱讀且同意會員服務條款及節目資訊公告，並同意放棄契約審閱期，且授權貴公司於條款目的範圍內，進行本人之個人資料蒐集、處理及利用。</label>
+<a aaa="x" href="https://www.google.com"><button>確認張數</button></a>
+<img aaa="x">
+</body>
+</html>

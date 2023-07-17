@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <title>TaylorSwift2023</title>
+</head>
+<script>
+    window.onload = function () {
+        fetch('https://raw.githubusercontent.com/Kang94001/ticket/main/info.js')
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (jsonObj) {
+
+                let content = ''
+                jsonObj['tickets'].slice(0, 5).forEach(function (pricesection) {
+
+                    content += `
+                <ul class="pricecard" value="${pricesection['section']}, ${pricesection['price']}">
+                    <span class="pricesection">${pricesection['section']}</span>
+                    <span class="ticketprice">${pricesection['price']}</span>
+                    <span class="amount">${pricesection['amount']}</span>
+                </ul>
+            
+                `
+                })
+
+                let content2 = ''
+                jsonObj['tickets'].slice(5, 12).forEach(function (pricesection) {
+                    content2 += `
+                <ul class="pricecard">
+                    <span class="pricesection">${pricesection['section']}</span>
+                    <span class="ticketprice">${pricesection['price']}</span>
+                    <span class="amount">${pricesection['amount']}</span>
+                </ul>
+            
+                `
+                })
+                let content3 = ''
+                jsonObj['tickets'].slice(12, 14).forEach(function (pricesection) {
+                    content3 += `
+                <ul class="pricecard">
+                    <span class="pricesection">${pricesection['section']}</span>
+                    <span class="ticketprice">${pricesection['price']}</span>
+                    <span class="amount">${pricesection['amount']}</span>
+                </ul>
+            
+                `
+                })
+                let content4 = ''
+                jsonObj['tickets'].slice(14, 18).forEach(function (pricesection) {
+                    content4 += `
+                <ul class="pricecard">
+                    <span class="pricesection">${pricesection['section']}</span>
+                    <span class="ticketprice">${pricesection['price']}</span>
+                    <span class="amount">${pricesection['amount']}</span>
+                </ul>
+            
+                `
+                })
+                let content5 = ''
+                jsonObj['tickets'].slice(18, 21).forEach(function (pricesection) {
+                    content5 += `
+                <ul class="pricecard">
+                    <span class="pricesection">${pricesection['section']}</span>
+                    <span class="ticketprice">${pricesection['price']}</span>
+                    <span class="amount">${pricesection['amount']}</span>
+                </ul>
+            
+                `
+                })
+                let content6 = ''
+                jsonObj['tickets'].slice(21,).forEach(function (pricesection) {
+                    content6 += `
+                <ul class="pricecard">
+                    <span class="pricesection">${pricesection['section']}</span>
+                    <span class="ticketprice">${pricesection['price']}</span>
+                    <span class="amount">${pricesection['amount']}</span>
+                </ul>
+            
+                `
+                })
+
+
+                let header = `<p class="select">請選擇區域</p>`
+                let eight = `<p class="green">8800區</p>`
+                let six = `<p class="blue">6800區</p>`
+                let five = `<p class="lightgreen">5800區</p>`
+                let four = `<p class="yellow">4800區</p>`
+                let three = `<p class="orange">3800區</p>`
+                let two = `<p class="pink">2800區</p>`
+                let table = header + eight + content + six + content2 + five + content3 + four + content4 + three + content5 + two + content6
+                document.getElementById("ticketprice").innerHTML = table;
+
+                pricecardClick()
+            })
+
+
+
+    }
+
+function pricecardClick() {
+    $(".pricecard").click(function () {
+            // alert('hello')
+            let arr = $(this).attr('value').split(', ')
+            //   alert($(this).attr('value'))
+            localStorage.setItem("1", arr[0])
+            localStorage.setItem("2", arr[1])
+            location.href = "./order.html"
+        })
+}    
+</script>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    header {
+        height: 120px;
+    }
+
+    header .login {
+        float: right;
+        height: 80px;
+        width: 160px;
+        margin-right: 100px;
+        margin-top: 20px;
+        color: #1b3b83;
+    }
+
+    header>div>span {
+        margin-left: 40px;
+    }
+
+    header>div>span>span {
+        color: #ccc;
+        font-size: 16px;
+    }
+
+    header .send {
+        height: 15px;
+        padding-right: 5px;
+        vertical-align: middle;
+        margin-right: 3px;
+    }
+
+    .contact {
+        padding: 2px 0px 2px 0px;
+        position: relative;
+        line-height: 40px;
+        list-style-type: none;
+        text-align: center;
+    }
+
+    .contact ul {
+        position: absolute;
+        list-style-type: none;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        display: none;
+    }
+
+    .contact li {
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        border-top: 1px solid lightgray;
+    }
+
+    .contact li:hover {
+        background-color: #f1f1f1;
+    }
+
+    .contact:hover ul {
+        display: block;
+    }
+
+    header a {
+        text-decoration: none;
+        color: #1b3b83;
+        font-size: 17px;
+    }
+
+    header a:hover {
+        text-decoration: none;
+    }
+
+    header .logo1 {
+        display: inline-block;
+        height: 80px;
+        margin-left: 130px;
+        margin-top: 20px;
+    }
+
+    header .search {
+        margin-top: 30px;
+        margin-right: 250px;
+        float: right;
+        width: 412px;
+        height: 60px;
+        border: 4px solid slategray;
+        border-radius: 15px
+    }
+
+    header .search input {
+        font-size: 20px;
+        padding-left: 20px;
+        width: 352px;
+        height: 52px;
+        border: 0;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    header .search input:focus {
+        outline: none;
+    }
+
+    header .search input::placeholder {
+        font-size: 20px;
+        color: #bfbfbf;
+    }
+
+    header .search button {
+        float: right;
+        width: 52px;
+        height: 52px;
+        border: 0;
+        background-color: slategray;
+        cursor: pointer;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    header .search img {
+        height: 28px;
+    }
+
+    .navBar {
+        height: 60px;
+        width: 1440px;
+        background-color: lightslategray;
+    }
+
+    .navBar>ul {
+        list-style-type: none;
+    }
+
+    .navBar>ul li {
+        float: left;
+        position: relative;
+    }
+
+    .navBar>ul>li>a {
+        height: 60px;
+        width: 360px;
+        /* width: (100%/4); */
+        display: inline-block;
+        font-size: 20px;
+        color: white;
+        line-height: 60px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .navBar>ul>li:hover {
+        background-color: silver;
+    }
+
+    .navBar ul li:hover>ul {
+        display: block;
+    }
+
+    .navBar ul ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 100%;
+        background-color: darkgray;
+        opacity: 0.9;
+        text-align: center;
+        line-height: 50px;
+    }
+
+    .navBar ul ul li {
+        border-top: 1px solid dimgray;
+        display: block;
+        width: 100%;
+        height: 50px;
+    }
+
+    .navBar ul ul li a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .navBar ul ul li:hover {
+        background-color: dimgray;
+    }
+
+    .content {
+        padding: 0px 140px 0px 140px;
+        height: 1200px;
+    }
+
+    .contentName {
+        margin-top: 30px;
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .contentName span {
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        padding-left: 400px;
+        padding-right: 400px;
+    }
+
+    #ticketprice {
+        float: right;
+        margin-right: 160px;
+        padding-left: 15px;
+        margin-top: 100px;
+    }
+
+    #ticketprice p {
+        font-size: 18px;
+        padding-left: 10px;
+        margin: 10px 0px 10px 0px;
+        line-height: 30px;
+        vertical-align: center;
+    }
+
+    #ticketprice .select {
+        font-size: 18px;
+        padding-left: 2px;
+        border: 1px solid dimgray;
+        background-color: lightgrey;
+        border-radius: 5px;
+    }
+
+    #ticketprice .green {
+        background-color: #22907f;
+        border: #22907f;
+        border-radius: 5px;
+    }
+
+    #ticketprice .blue {
+        background-color: #96d4e6;
+        border: #96d4e6;
+        border-radius: 5px;
+    }
+
+    #ticketprice .lightgreen {
+        background-color: #c1d72f;
+        border: #c1d72f;
+        border-radius: 5px;
+    }
+
+    #ticketprice .yellow {
+        background-color: #ebea62;
+        border: #ebea62;
+        border-radius: 5px;
+    }
+
+    #ticketprice .orange {
+        background-color: #ef7f18;
+        border: #ef7f18;
+        border-radius: 5px;
+    }
+
+    #ticketprice .pink {
+        background-color: #df4572;
+        border: #df4572;
+        border-radius: 5px;
+    }
+
+    .img {
+        width: 700px;
+        float: left;
+        margin-top: 100px;
+    }
+
+    .amount {
+        color: red;
+    }
+
+    .pricecard:hover {
+        background-color: beige;
+        cursor: pointer;
+    }
+
+    .pricecard {
+        margin: 5px 0px 0px 20px;
+        font-size: 17px;
+    }
+
+    footer {
+        padding: 30px 140px 30px 140px;
+        background-color: rgb(50, 56, 62);
+    }
+
+    footer .footerLogo {
+        width: 250px;
+        margin: 0px 0px 0px 10px;
+    }
+
+    footer>ul {
+        display: inline-block;
+        list-style-type: none;
+        margin: 0px 0px 20px 250px;
+    }
+
+    footer>ul>li {
+        color: #bbbcbd;
+    }
+
+    footer>ul>li>a {
+        text-decoration: none;
+        color: #bbbcbd;
+    }
+
+    footer>ul>li>a:hover {
+        text-decoration: underline;
+    }
+
+    footer hr {
+        color: #bbbcbd;
+    }
+
+    footer>div {
+        margin-top: 20px;
+        padding-right: 40px;
+    }
+
+    footer>div>span {
+        color: #bbbcbd;
+        font-size: 14px;
+    }
+
+    footer>div li {
+        float: right;
+        list-style-type: none;
+        border-right: 1px solid #bbbcbd;
+        padding: 0px 10px 0px 10px;
+        font-size: 15px;
+    }
+
+    footer>div .terms {
+        border: none;
+    }
+
+    footer>div a {
+        color: #bbbcbd;
+        text-decoration: none;
+    }
+</style>
+
+<body>
+    <header>
+        <a href="./index.html"><img class="logo1" src="./icon/Logoslogan_sm.png" alt="logo"></a>
+        <div class="login">
+            <nav>
+                <ul>
+                    <li class="contact"><img class="send" src="./icon/iconmonstr-paper-plane-1-48.png">聯絡我們
+                        <ul>
+                            <li><a href="mailto:iservice@ispan.com.tw">客服信箱</a></li>
+                            <li>客服專線<br>(02) 6631-6588</li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <span>
+                <a href="./login.html">登入</a>
+                <span>|</span>
+                <a href="./login.html">註冊</a>
+            </span>
+        </div>
+        <div class="search">
+            <input type="text" placeholder="請輸入關鍵字">
+            <button type="submit"><img src="./icon/iconmonstr-magnifier-4-48.png"></button>
+        </div>
+
+    </header>
+    <nav class="navBar">
+        <ul>
+            <li>
+                <a href="">節目資訊</a>
+                <ul class="dropdown">
+                    <li><a href="">演唱會</a></li>
+                    <li><a href="">運動賽事</a></li>
+                    <li><a href="">音樂劇</a></li>
+                </ul>
+            </li>
+            <li><a href="">最新消息</a></li>
+            <li><a href="">常見問題</a></li>
+            <li><a href="">訂單查詢</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <div class="contentName"><span>Taylor Swift ⟪The Eras Tour⟫</span></div>
+        <div class="img1"><img class="img" src="./img/蘇.png" alt=""></div>
+        <div id="ticketprice"></div>
+    </div>
+
+    <footer>
+        <img class="footerLogo" src="./icon/footerLOGO.png" alt="">
+        <ul>
+            <li>公司名稱：資展國際股份有限公司</li>
+            <li>客服專線：(02) 6631-6588(台北窗口)</li>
+            <li>客服信箱：<a href="mailto:iservice@ispan.com.tw">iservice@ispan.com.tw</a></li>
+            <li>客服時間：週一 ~ 週五 9:00-12:00&nbsp;|&nbsp;13:30-16:30&nbsp;(適逢國定假日暫停服務)</li>
+        </ul>
+        <hr>
+        <div>
+            <span class="copyright">Copyright © ISPAN Co.,Ltd. All Rights Reserved.</span>
+            <li class="terms"><a href="">隱私權條款</a></li>
+            <li><a href="">會員服務條款</a></li>
+            <li><a href="">認識Ispan</a></li>
+        </div>
+
+    </footer>
+</body>
+
+</html>
